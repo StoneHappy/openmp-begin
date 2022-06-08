@@ -1,13 +1,13 @@
-#include <omp.h>
-#include <iostream>
-
-int main(int argc, char** argv)
+#include<omp.h>
+#include<iostream>
+using namespace std;
+int main()
 {
-    std::cout << "lean openmp: cmake import openmp example.\n";
-#pragma omp parallel for
-    for (int i = 0; i < 10; ++i)
-    {
-        std::cout << "i = " << i << std::endl;
-    }
-    return 0;
+	omp_set_num_threads(2);
+#pragma omp parallel
+	{
+#pragma omp for
+		for (int i = 0;i < 4;i++)
+			cout << omp_get_thread_num() << endl;
+	}
 }
